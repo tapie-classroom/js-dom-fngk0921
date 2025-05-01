@@ -17,6 +17,10 @@
     height: 10vh;
 }
 
+#cat-img {
+    transition: transform .03s ease-in-out;
+}
+
 #popcattext{
     height: 4em;
     margin: 1em;
