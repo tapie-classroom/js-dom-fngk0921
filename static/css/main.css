@@ -1,0 +1,26 @@
+
+#app {
+    background-color: blanchedalmond;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+
+
+
+}
+
+#header {
+    display: flex;
+    /* align-items: flex-start; */
+    width: 100vw;
+}
+
+#popcattext{
+    width: min(300px, 50%);
+    height: 4em;
+    margin: 1em;
+}
+
+* {
+    margin: 0px;
+}
