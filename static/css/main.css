@@ -14,16 +14,29 @@
 
 #header {
     display: flex;
+    height: 10vh;
 }
 
 #popcattext{
-    width: min(300px, 50%);
     height: 4em;
     margin: 1em;
     font-size: 3em;
+
     font-weight: bold;
+}
+
+#popcount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    font-size: 3em;
+    font-weight: bold;
+    color: #000000;
+    
 }
 
 * {
     margin: 0px;
+    user-select: none;
 }
