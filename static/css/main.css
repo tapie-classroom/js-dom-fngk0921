@@ -4,6 +4,9 @@
     display: flex;
     width: 100vw;
     height: 100vh;
+    flex-direction: column;
+
+    align-items: center;
 
 
 
@@ -11,14 +14,14 @@
 
 #header {
     display: flex;
-    /* align-items: flex-start; */
-    width: 100vw;
 }
 
 #popcattext{
     width: min(300px, 50%);
     height: 4em;
     margin: 1em;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 * {
