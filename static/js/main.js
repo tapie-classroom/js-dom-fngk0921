@@ -3,10 +3,14 @@ let currentCps = 0;
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 window.onload = () => {
-    let cpsList = [];
+    
     const clickArea = document.getElementById("app");
     const catImg = document.getElementById("cat-img");
+    const cpsText = document.getElementById("cps");
+
+    let cpsList = [];
     let cps = 0;
+
     const popAudio = new Audio("https://popcat.click/pops/pop4.mp3");
     popAudio.load();
 
@@ -30,17 +34,10 @@ window.onload = () => {
         await updateCps()
     });
 
-    clickArea.addEventListener("mouseup", function() {
-        catImg.style.transform = 'scale(1.0)';
-        catImg.src = './static/img/cat.png';
-    });
 
-    async function updateCps() {
-        cpsList.push(new Date().getTime());
-        cps += 1;
-
-        await wait(1000)
-        cps -= 1;
+    cpsUpdateInterval = setInterval(() => {
+        now = new Date().getTime();
+        cpsList.push(now);
 
         cpsListTemp = cpsList
         cpsList = cpsList.filter((time) => {
@@ -53,10 +50,42 @@ window.onload = () => {
 
         // console.log(cpsList, cpsListTemp);
         // console.log(cpsDifference);
-        const calculatedCps = cpsList.length / Math.max(cpsDifference, 1);
-        currentCps = parseInt(calculatedCps * 100) / 100;
+        cpsList = cpsList.filter((time) => {
+            return time != now;
+        });
 
-        console.log(currentCps);
+
+        const calculatedCps = cpsList.length / Math.max(cpsDifference, 1);
+        currentCps = Number(calculatedCps.toFixed(2)) ? parseFloat(calculatedCps.toFixed(2)) : 0;
+
+        if (currentCps < 1) {
+            currentCps = 0;
+        }
+        console.log(cpsListTemp, currentCps, cpsList);
+        cpsText.innerText = currentCps + " cps";
+    }
+    , 100);
+
+    cpsFilterInterval = setInterval(() => {
+        const now = new Date().getTime();
+        cpsList = cpsList.filter((time) => {
+            return time > now - 2000 && time != undefined;
+        });
+    }, 100);
+
+
+    clickArea.addEventListener("mouseup", function() {
+        catImg.style.transform = 'scale(1.0)';
+        catImg.src = './static/img/cat.png';
+    });
+
+    async function updateCps() {
+        cpsList.push(new Date().getTime());
+        cps += 1;
+        await wait(1000)
+        cps -= 1;
+
+        
     }
 
 }
