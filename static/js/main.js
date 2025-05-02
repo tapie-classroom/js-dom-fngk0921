@@ -1,3 +1,6 @@
+
+// 주석 직접 달았어요.. gpt 아님.
+
 let currentCps = 0;
 
 const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -7,17 +10,20 @@ window.onload = () => {
     const clickArea = document.getElementById("app");
     const catImg = document.getElementById("cat-img");
     const cpsText = document.getElementById("cps");
+    const popCount = document.getElementById("popcount"); // 클릭 수 카운트 텍스트
 
     let cpsList = []; // 클릭 시간 리스트
 
     const popAudio = new Audio("https://popcat.click/pops/pop4.mp3"); // 클릭 소리
     popAudio.load();
 
-    clickArea.addEventListener("mousedown", async function() { // 마우스 클릭했을때
-        const popCount = document.getElementById("popcount"); // 클릭 수 카운트 텍스트
+    popCount.innerText = localStorage.getItem("popcount") || 0; // 클릭 수 초기화
 
+    clickArea.addEventListener("mousedown", async function() { // 마우스 클릭했을때
+        
         const count = Number(popCount.innerText); // 현재 클릭 수 가져오기
         popCount.innerText = count + 1; // 클릭 수 증가
+        localStorage.setItem("popcount", count + 1); // 클릭 수 저장
 
         catImg.style.transform = 'scale(1.1)'; // 고양이 이미지 확대
         catImg.src = "./static/img/catop.png"; // 입 벌린 고양이 이미지로 변경
