@@ -19,7 +19,7 @@ window.onload = () => {
         const count = Number(popCount.innerText); // 현재 클릭 수 가져오기
         popCount.innerText = count + 1; // 클릭 수 증가
 
-        catImg.style.transform = 'scale(1.3)'; // 고양이 이미지 확대
+        catImg.style.transform = 'scale(1.1)'; // 고양이 이미지 확대
         catImg.src = "./static/img/catop.png"; // 입 벌린 고양이 이미지로 변경
 
         popAudio.play(); // 클릭 소리 재생
